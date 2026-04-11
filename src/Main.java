@@ -1,5 +1,6 @@
 import java.util.Scanner;
 import Capture_Food.*;
+import TicTacToe.*;
 
 public class Main {
 
@@ -34,13 +35,15 @@ public class Main {
         Guess_The_Number GTN = new Guess_The_Number();
         Rock_Paper_Scissor RPS = new Rock_Paper_Scissor();
         Capture_The_Food CTF = new Capture_The_Food();
+        TicTacToe TTT = new TicTacToe();
+
 
         boolean play = false;
 
 
         while (!play){
             System.out.println("What you want to play");
-            System.out.println("Write G for Guess The Number, C for Capture The Food and R for Rock Paper Scissor");
+            System.out.println("Write G for Guess The Number, C for Capture The Food, R for Rock Paper Scissor and T for Tic Tac Toe");
             String choice = sc.next().toUpperCase();
             if(choice.startsWith("G")){
                 GTN.main();
@@ -65,6 +68,16 @@ public class Main {
             }
             else if (choice.startsWith("C")){
                 CTF.main();
+                more = morePlay();
+                if (more){
+                    continue;
+                }
+                else {
+                    break;
+                }
+            }
+            else if (choice.startsWith("T")){
+                TTT.main();
                 more = morePlay();
                 if (more){
                     continue;
