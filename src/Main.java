@@ -1,6 +1,7 @@
 import java.util.Scanner;
 import Capture_Food.*;
 import TicTacToe.*;
+import HangMan.*;
 
 public class Main {
 
@@ -36,6 +37,7 @@ public class Main {
         Rock_Paper_Scissor RPS = new Rock_Paper_Scissor();
         Capture_The_Food CTF = new Capture_The_Food();
         TicTacToe TTT = new TicTacToe();
+        HangMan HM = new HangMan();
 
 
         boolean play = false;
@@ -43,7 +45,7 @@ public class Main {
 
         while (!play){
             System.out.println("What you want to play");
-            System.out.println("Write G for Guess The Number, C for Capture The Food, R for Rock Paper Scissor and T for Tic Tac Toe");
+            System.out.println("Write G for Guess The Number, C for Capture The Food, R for Rock Paper Scissor, T for Tic Tac Toe and H for HangMan");
             String choice = sc.next().toUpperCase();
             if(choice.startsWith("G")){
                 GTN.main();
@@ -78,6 +80,16 @@ public class Main {
             }
             else if (choice.startsWith("T")){
                 TTT.main();
+                more = morePlay();
+                if (more){
+                    continue;
+                }
+                else {
+                    break;
+                }
+            }
+            else if (choice.startsWith("H")){
+                HM.main();
                 more = morePlay();
                 if (more){
                     continue;
