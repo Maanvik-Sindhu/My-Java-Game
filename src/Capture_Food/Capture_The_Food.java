@@ -1,5 +1,9 @@
 package Capture_Food;
 
+/*
+You can't Run this you need to go to Main class
+ */
+
 import java.util.*;
 public class Capture_The_Food implements Important_Methods{
     int i = 0;

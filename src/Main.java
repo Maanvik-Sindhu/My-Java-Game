@@ -38,6 +38,7 @@ public class Main {
         Capture_The_Food CTF = new Capture_The_Food();
         TicTacToe TTT = new TicTacToe();
         HangMan HM = new HangMan();
+        Battleship BS = new Battleship();
 
 
         boolean play = false;
@@ -45,7 +46,7 @@ public class Main {
 
         while (!play){
             System.out.println("What you want to play");
-            System.out.println("Write G for Guess The Number, C for Capture The Food, R for Rock Paper Scissor, T for Tic Tac Toe and H for HangMan");
+            System.out.println("Write: \nG for Guess The Number \nC for Capture The Food \nR for Rock Paper Scissor \nT for Tic Tac Toe \nH for HangMan \nB for Battleship");
             String choice = sc.next().toUpperCase();
             if(choice.startsWith("G")){
                 GTN.main();
@@ -90,6 +91,16 @@ public class Main {
             }
             else if (choice.startsWith("H")){
                 HM.main();
+                more = morePlay();
+                if (more){
+                    continue;
+                }
+                else {
+                    break;
+                }
+            }
+            else if (choice.startsWith("B")){
+                BS.main();
                 more = morePlay();
                 if (more){
                     continue;

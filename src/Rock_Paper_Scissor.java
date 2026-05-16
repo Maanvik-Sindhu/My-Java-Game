@@ -1,5 +1,5 @@
 /*
-You can't Run this you need to go Games Runner
+You can't Run this you need to go to Main class
  */
 
 import java.util.Random;

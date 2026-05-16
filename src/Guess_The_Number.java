@@ -1,3 +1,6 @@
+/*
+You can't Run this you need to go to Main class
+ */
 
 import java.util.Scanner;
 import java.util.Random;
