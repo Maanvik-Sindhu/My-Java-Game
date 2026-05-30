@@ -28,7 +28,7 @@ public class Capture_The_Food implements Important_Methods{
     };
     @Override
     public void printBoard() {
-        System.out.println("___________________________________________________________________________");
+        System.out.println("_______________________________________");
         for (int i = 0; i< board.length; i++){
             System.out.print("|");
             for (int j = 0; j< board.length; j++){
@@ -36,12 +36,12 @@ public class Capture_The_Food implements Important_Methods{
                     System.out.print(board[i][j]+"");
                 }
                 else {
-                    System.out.print(board[i][j]+"       ");
+                    System.out.print(board[i][j]+"   ");
                 }
             }
             System.out.println("|");
         }
-        System.out.println("---------------------------------------------------------------------------");
+        System.out.println("---------------------------------------");
     }
 
     @Override
@@ -54,29 +54,28 @@ public class Capture_The_Food implements Important_Methods{
     public void playerMovement() {
         Scanner sc = new Scanner(System.in);
         System.out.println("Enter W,S,A,D to control player");
+
         String CP = sc.next().toUpperCase();
+
+        // Clear old position
         this.board[this.i][this.j] = ' ';
-        boolean b = false;
-        while (!b)
-            switch (CP){
-                case "W":
-                    this.i = i-1;
-                    break;
-                case "S":
-                    this.i = i+1;
-                    break;
-                case "A":
-                    this.j = j-1;
-                    break;
-                case "D":
-                    this.j = j+1;
-            }
-            if (CP != "W" ||CP != "S" ||CP != "A" ||CP != "D"){
-                System.out.println("Can't understand \n Say That Again");
-            }
-            else {
-                b = true;
-            }
+
+        switch (CP) {
+            case "W":
+                this.i--;
+                break;
+            case "S":
+                this.i++;
+                break;
+            case "A":
+                this.j--;
+                break;
+            case "D":
+                this.j++;
+                break;
+            default:
+                System.out.println("Invalid Input! Please enter W, A, S, or D");
+        }
     }
 
     @Override
@@ -86,7 +85,6 @@ public class Capture_The_Food implements Important_Methods{
 
     @Override
     public boolean isPlayerWin() {
-        Random ran = new Random();
         if (this.i == this.r1 && this.j== this.r2){
             this.board[r1][r2] = ' ';
             this.r1 = ran.nextInt(10);
@@ -99,13 +97,53 @@ public class Capture_The_Food implements Important_Methods{
         }
     }
 
+    @Override
+    public void placeObstacles(int count){
+        int x,y;
+        for (int k = 0; k < count; k++) {
+            x = ran.nextInt(10);
+            y = ran.nextInt(10);
+            if ((x == i && y == j) || (x == r1 && y == r2)) {
+                k--;
+                continue;
+            }
+            board[x][y] = '#';
+        }
+    }
+
+    @Override
+    public boolean checkObstacles() {
+        if (board[i][j]=='#'){
+            System.out.println("You Hit the Obstacle!......");
+            System.out.println("You Lost");
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+
     public static void main() {
         Capture_The_Food g = new Capture_The_Food();
+        Scanner sc = new Scanner(System.in);
         System.out.println("WELCOME TO CAPTURE THE FOOD");
+        System.out.println("Select difficulty: \ne for easy, \nm for medium, \nh for hard");
+        String dif = sc.next();
+        if (dif.equalsIgnoreCase("h")){
+            g.placeObstacles(15);
+        }
+        else if (dif.equalsIgnoreCase("m")) {
+            g.placeObstacles(10);
+        }
+        else {
+            g.placeObstacles(5);
+        }
+
+
         System.out.println("'@'is you player and '*' is you food");
         int i = 0;
         try {
-            while (i<5) {
+            while (i<3) {
                 do {
                     g.foodLocation();
                 }while (false);
@@ -116,8 +154,11 @@ public class Capture_The_Food implements Important_Methods{
                     System.out.println("You Capture food");
                     i++;
                 }
+                else if (g.checkObstacles()) {
+                    break;
+                }
             }
-            if (i==4){
+            if (i==2){
                 System.out.println("You Won The Match");
             }
         } catch (ArrayIndexOutOfBoundsException e) {

@@ -6,4 +6,6 @@ public interface Important_Methods {
     void playerMovement();
     void foodLocation();
     boolean isPlayerWin();
+    void placeObstacles(int count);
+    boolean checkObstacles();
 }
