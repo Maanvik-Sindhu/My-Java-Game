@@ -1,9 +1,9 @@
-package HangMan;
+package main.HangMan;
 
 /*
 You can't Run this you need to go to Main class
  */
-
+import main.Main;
 import java.util.Scanner;
 
 public class HangMan {
@@ -95,7 +95,9 @@ public class HangMan {
             if (h.getAttempts() == 0) {
                 break;
             }
+            Main.clearScreen();
         }
+        Main.clearScreen();
         if (h.getAttempts() == 0) {
             System.out.println("You Lost");
             System.out.println("It was: ");

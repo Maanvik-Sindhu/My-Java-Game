@@ -1,3 +1,5 @@
+package main;
+
 /*
 You can't Run this you need to go to Main class
  */
@@ -24,12 +26,14 @@ class Guess_The_Number {
         int com = ran.nextInt(101);
         System.out.println("Enter number Between 0 and 100");
         int user = sc.nextInt();
+        Main.clearScreen();
 
         while (com != user){
             IsNumCorrect(user,com);
             Guess ++;
             System.out.println("Enter Number");
             user = sc.nextInt();
+            Main.clearScreen();
         }
         if(com == user){
             System.out.println("You Guess The number");

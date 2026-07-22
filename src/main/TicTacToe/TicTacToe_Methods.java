@@ -1,4 +1,4 @@
-package TicTacToe;
+package main.TicTacToe;
 
 public interface TicTacToe_Methods {
     void printBoard();
@@ -6,4 +6,6 @@ public interface TicTacToe_Methods {
     char isWin();
     boolean isWritten(int i, int j);
     int playerInput();
+    void modifyPlayer();
+    boolean isFull();
 }

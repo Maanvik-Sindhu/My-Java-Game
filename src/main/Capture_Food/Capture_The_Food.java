@@ -1,4 +1,6 @@
-package Capture_Food;
+package main.Capture_Food;
+
+import main.Main;
 
 /*
 You can't Run this you need to go to Main class
@@ -138,6 +140,7 @@ public class Capture_The_Food implements Important_Methods{
         else {
             g.placeObstacles(5);
         }
+             Main.clearScreen();
 
 
         System.out.println("'@'is you player and '*' is you food");
@@ -151,12 +154,13 @@ public class Capture_The_Food implements Important_Methods{
                 g.printBoard();
                 g.playerMovement();
                 if (g.isPlayerWin()){
-                    System.out.println("You Capture food");
+                    System.out.println("You Won!....");
                     i++;
                 }
                 else if (g.checkObstacles()) {
                     break;
                 }
+                    Main.clearScreen();
             }
             if (i==2){
                 System.out.println("You Won The Match");

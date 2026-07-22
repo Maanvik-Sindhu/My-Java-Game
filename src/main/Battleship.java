@@ -1,4 +1,5 @@
 
+package main;
 /*
 You can't Run this you need to go to Main class
  */
@@ -57,6 +58,7 @@ public class Battleship {
         int row = sc.nextInt() -1;
         System.out.println("Enter Column(1-5)");
         int col = sc.nextInt() -1;
+        
 
         if (hiddenBoard[row][col] == 'S'){
             System.out.println("Hit!........");
@@ -71,6 +73,7 @@ public class Battleship {
             return false;
         }
         else {
+                 Main.clearScreen();
             board[row][col] = 'O';
             return false;
         }

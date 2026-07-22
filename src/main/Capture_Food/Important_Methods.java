@@ -1,4 +1,4 @@
-package Capture_Food;
+package main.Capture_Food;
 
 public interface Important_Methods {
     void printBoard();

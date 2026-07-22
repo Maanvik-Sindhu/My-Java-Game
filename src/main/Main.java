@@ -1,10 +1,36 @@
+package main;
+
+import java.io.*;
 import java.util.Scanner;
-import Capture_Food.*;
-import TicTacToe.*;
-import HangMan.*;
+import main.Capture_Food.*;
+import main.TicTacToe.*;
+import main.HangMan.*;
 
 public class Main {
 
+    public static void clearScreen(){
+        try {
+            // Method 1: Standard ANSI Escape Codes (Works on Linux, macOS, and modern Windows 10/11)
+            System.out.print("\033[H\033[2J");
+            System.out.flush();
+
+            // Method 2: OS-Specific Process Builder (Fallback for standard system terminals)
+            String os = System.getProperty("os.name").toLowerCase();
+            if (os.contains("win")) {
+                // Executes the 'cls' command inside the Windows command prompt environment
+                new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
+            } else {
+                // Executes the 'clear' command on Linux and macOS
+                new ProcessBuilder("clear").inheritIO().start().waitFor();
+            }
+        } catch (IOException | InterruptedException e) {
+            // Method 3: Visual Fallback (If running inside restricted IDE consoles like Eclipse)
+            for (int i = 0; i < 50; i++) {
+                System.out.println();
+            }
+        }
+    }
+    
     static boolean morePlay(){
         Scanner sc = new Scanner(System.in);
         boolean un = false;
@@ -42,87 +68,43 @@ public class Main {
         CoinToss CT = new CoinToss();
 
 
-        boolean play = false;
+        boolean play = true;
 
 
-        while (!play){
+        while (play){
+            play = false;
             System.out.println("What you want to play");
             System.out.println("Write: \nG for Guess The Number \nC for Capture The Food \nR for Rock Paper Scissor \nT for Tic Tac Toe \nH for HangMan \nB for Battleship \nCT for Coin Toss");
             String choice = sc.next().toUpperCase();
-            if(choice.startsWith("G")){
+            clearScreen();
+            if(choice.equals("G")){
                 GTN.main();
-                more = morePlay();
-
-                if (more){
-                    continue;
-                }
-                else {
-                    break;
-                }
             }
-            else if (choice.startsWith("R")){
+            else if (choice.equals("R")){
                 RPS.main();
-                more = morePlay();
-                if (more){
-                    continue;
-                }
-                else {
-                    break;
-                }
             }
-            else if (choice.startsWith("C")){
+            else if (choice.equals("C")){
                 CTF.main();
-                more = morePlay();
-                if (more){
-                    continue;
-                }
-                else {
-                    break;
-                }
             }
-            else if (choice.startsWith("T")){
+            else if (choice.equals("T")){
                 TTT.main();
-                more = morePlay();
-                if (more){
-                    continue;
-                }
-                else {
-                    break;
-                }
             }
-            else if (choice.startsWith("H")){
+            else if (choice.equals("H")){
                 HM.main();
-                more = morePlay();
-                if (more){
-                    continue;
-                }
-                else {
-                    break;
-                }
             }
-            else if (choice.startsWith("B")){
+            else if (choice.equals("B")){
                 BS.main();
-                more = morePlay();
-                if (more){
-                    continue;
-                }
-                else {
-                    break;
-                }
             }
-            else if (choice.startsWith("CT")){
+            else if (choice.equals("CT")){
                 CT.main();
-                more = morePlay();
-                if (more){
-                    continue;
-                }
-                else {
-                    break;
-                }
             }
             else {
                 System.out.println("Can't Understand!...........");
+                play = true;
             }
+            System.out.println("\n");
+            play = morePlay();
+            clearScreen();
         }
         System.out.println("Thanks for playing!.........");
 

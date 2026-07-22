@@ -1,3 +1,5 @@
+package main;
+
 /*
 You can't Run this you need to go to Main class
  */
@@ -25,11 +27,13 @@ class Rock_Paper_Scissor {
         System.out.println("Welcome to Rock , Paper , Scissor");
         System.out.println("How many rounds do you want to play");
         int round = sc.nextInt();
+        Main.clearScreen();
 
         int MyScore = 0;
         int ComScore = 0;
 
         for(int i = 1; i<=round; i++){
+            System.out.println("Round "+i);
             System.out.println("Write 0 for rock , 1 for Paper , 2 for Scissor");
             byte me = sc.nextByte(3);
             int com = ran.nextInt(3);
@@ -48,6 +52,8 @@ class Rock_Paper_Scissor {
                 System.out.println("Draw");
                 ComChoice(com);
             }
+            try{Thread.sleep(1000);}catch(Exception e){e.printStackTrace();}
+            Main.clearScreen();
         }
         if(MyScore > ComScore){
             System.out.printf("Score is: %d , %d \n",MyScore,ComScore);

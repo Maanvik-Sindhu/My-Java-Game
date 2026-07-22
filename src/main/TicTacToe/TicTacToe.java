@@ -1,9 +1,9 @@
-package TicTacToe;
+package main.TicTacToe;
 
 /*
 You can't Run this you need to go to Main class
  */
-
+import main.Main;
 import java.util.Scanner;
 
 public class TicTacToe implements TicTacToe_Methods{
@@ -148,8 +148,22 @@ public class TicTacToe implements TicTacToe_Methods{
                 System.out.println("Can't Understand write from 1 to 9");
                 repeat = true;
             }
+                if(isFull()){
+                        repeat = false;
+                }
         }while (repeat);
     }
+        
+     public boolean isFull(){
+             for(int i = 0; i<3; i++){
+                     for(int j = 0; j<3; j++){
+                             if(board[i][j] == ' '){
+                                     return false;
+                             }
+                     }
+             }
+             return true;
+     }   
 
     @Override
     public char isWin() {
@@ -157,20 +171,34 @@ public class TicTacToe implements TicTacToe_Methods{
                 (board[1][0] == 'X' && board[1][1] == 'X' && board[1][2] == 'X') ||
                 (board[2][0] == 'X' && board[2][1] == 'X' && board[2][2] == 'X') ||
                 (board[0][0] == 'X' && board[1][1] == 'X' && board[2][2] == 'X') ||
-                (board[2][0] == 'X' && board[1][1] == 'X' &&board[0][2] == 'X')){
+                (board[2][0] == 'X' && board[1][1] == 'X' && board[0][2] == 'X') ||
+                (board[0][0] == 'X' && board[1][0] == 'X' && board[2][0] == 'X') ||
+                (board[0][1] == 'X' && board[1][1] == 'X' && board[2][1] == 'X') ||
+                (board[0][2] == 'X' && board[1][2] == 'X' && board[2][2] == 'X') ){
             return 'X';
         }
         else if ((board[0][0] == 'O' && board[0][1] == 'O' && board[0][2] == 'O') ||
                 (board[1][0] == 'O' && board[1][1] == 'O' && board[1][2] == 'O') ||
                 (board[2][0] == 'O' && board[2][1] == 'O' && board[2][2] == 'O') ||
                 (board[0][0] == 'O' && board[1][1] == 'O' && board[2][2] == 'O') ||
-                (board[2][0] == 'O' && board[1][1] == 'O' &&board[0][2] == 'O')){
+                (board[2][0] == 'O' && board[1][1] == 'O' && board[0][2] == 'O') ||
+                (board[0][0] == 'O' && board[1][0] == 'O' && board[2][0] == 'O') ||
+                (board[0][1] == 'O' && board[1][1] == 'O' && board[2][1] == 'O') ||
+                (board[0][2] == 'O' && board[1][2] == 'O' && board[2][2] == 'O') ){
             return 'O';
         }
         else {
             return 0;
         }
     }
+        public void modifyPlayer(){
+            if (this.player == 'O') {
+                this.player = 'X';
+            }
+            else if (this.player == 'X') {
+                this.player = 'O';
+            }
+        }
 
     public void main() {
         TicTacToe main = new TicTacToe();
@@ -178,21 +206,25 @@ public class TicTacToe implements TicTacToe_Methods{
             main.printBoard();
             main.positionOfPlayers();
             if(main.isWin() != 0){
+                    main.printBoard();
+        System.out.println("Congratulations player "+main.player+" has Won");
                 break;
             }
-
-            if (main.player == 'O') {
-                main.player = 'X';
-            } else if (main.player == 'X') {
-                main.player = 'O';
+            if(isFull()){
+                    main.printBoard();
+        System.out.println("Draw!....");
+                    break;
             }
+            main.modifyPlayer();
+            Main.clearScreen();
         }
-        if (main.player == 'O') {
-            main.player = 'X';
-        } else if (main.player == 'X') {
-            main.player = 'O';
-        }
-        main.printBoard();
-        System.out.println("Congratulations player "+main.player+" has Won");
+        
     }
 }
+
+
+
+
+
+
+
