@@ -29,6 +29,8 @@ public class Main {
                 System.out.println();
             }
         }
+        
+        System.out.println("    MADE BY MAANVIK SINDHU  \n\n");
     }
     
     static boolean morePlay(){
@@ -56,6 +58,8 @@ public class Main {
     }
 
     public static void main(String[] args) {
+        clearScreen();
+        
         Scanner sc = new Scanner(System.in);
         boolean more;
 
